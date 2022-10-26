@@ -1,6 +1,3 @@
-
-
-
 <table border=1>
     <tr>
         <td>Sno</td>
@@ -9,6 +6,7 @@
         <td>Phone</td>
     </tr>
 <?php 
+
 include 'db.php';
 
 $sql = "SELECT id,name,email,phone FROM users";
