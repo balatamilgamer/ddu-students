@@ -6,8 +6,11 @@ $id = $_GET['id'];
 
 $sql = "delete from student where id=$id";
 if($db->query($sql)){
-    header('location:list.php?msg=Record deleted successfully');
+    $msg = "Record deleted successfully";
 } else{
-    header('location:list.php?msg=ERROR: Could not able to execute $sql. ' . $db->error);
+    $msg = "ERROR: Could not able to execute $sql. " . $db->error;
 }
+
+header("Location: list.php?msg=$msg");
+
 ?>

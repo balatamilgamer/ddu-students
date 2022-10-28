@@ -1,25 +1,20 @@
-<?php 
-
-include 'db.php';
-
-$id = $_GET['id'];
-
-$select = "select * from student where id=$id";
-$result = $db->query($select);
-$row = $result->fetch_assoc();
-
-print_r($row);
-
+<?php
+    include 'db.php';
+    $id = $_GET['id'];
+    $sql = "select * from student where id=$id";
+    $result = $db->query($sql);
+    $data = $result->fetch_assoc();
+    print_r($data);
 ?>
 
 <form action="" method="post">
-    <input type="text" value="<?php echo $row['name']; ?>" name="fullname" placeholder="Name">
-    <input type="text" value="<?php echo $row['email']; ?>" name="emailid" placeholder="Email">
-    <input type="text" value="<?php echo base64_decode($row['password']); ?>" name="passcode" placeholder="password">
+    <input type="text" value="<?php echo $data['name']; ?>" name="fullname" placeholder="Name">
+    <input type="text" value="<?php echo $data['email']; ?>" name="emailid" placeholder="Email">
+    <input type="text" value="<?php echo base64_decode($data['password']); ?>" name="passcode" placeholder="password">
     <input type="submit" name="submit" value="Submit">
 </form>
 
-<?php 
+<?php
 
 if(isset($_POST['submit'])){
 
@@ -28,14 +23,15 @@ if(isset($_POST['submit'])){
 
     $en_ps = base64_encode($passcode);
 
-    $sql = "update student set name='$fullname', email='$emailid', password='$en_ps' 
-    where id=$id";
+    $sql = "update student set name='$fullname', email='$emailid', password='$en_ps' where id=$id";
 
     if($db->query($sql)){
-        header('location:list.php?msg=Record updated successfully');
+        $msg = "Record updated successfully";
     } else{
-        header('location:list.php?msg=ERROR: Could not able to execute $sql. ' . $db->error);
+        $msg = "ERROR: Could not able to execute $sql. " . $db->error;
     }
+
+    header("Location: list.php?msg=$msg");
 
 }
 
