@@ -3,9 +3,9 @@ include 'db.php';
 
 $sql = "Delete from `users` where id='$_POST[id]'";
 if($db->query($sql)){
-    echo "Data Deleted";
+    echo 1;
 } else {
-    echo "Data Not Deleted";
+    echo 0;
 }
 
 

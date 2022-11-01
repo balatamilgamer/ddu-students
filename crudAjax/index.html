@@ -48,7 +48,10 @@
                     type: 'POST',
                     data: {id: rowid},
                     success: function(data){
-                        getData();
+                        //getData();
+                        if(data==1){
+                            $("#"+rowid).remove();
+                        }
                     }
                 });
             });
