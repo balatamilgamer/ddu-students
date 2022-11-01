@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    
+    <form action="" method="post" id="dataform">
+        <input type="hidden" name="id" id="id">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+        <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+        <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone">
+    </form>
+
+    <button id="submit">Submit</button>
+    <button id="update" style="display: none;">Update</button>
+
+
+    <div id="result"></div>
+
+
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <table border="1" id="result_table" class="table table-bordered table-striped">        
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+
+
+            // delete data from database
+            $("#result_table").on('click', '.delete', function(){
+                var rowid = $(this).attr('data-id');
+                console.log(rowid);
+                $.ajax({
+                    url: 'delete.php',
+                    type: 'POST',
+                    data: {id: rowid},
+                    success: function(data){
+                        getData();
+                    }
+                });
+            });
+
+            // load data in form
+            $("#result_table").on("click",'.edit', function(){
+                var id = $(this).attr("data-id");
+                console.log(id);
+
+                $.ajax({
+                    url: "getuser.php",
+                    type: "POST",
+                    data: {id: id},
+                    success: function(data){
+                        var data = JSON.parse(data);
+                        $("#name").val(data.name);
+                        $("#email").val(data.email);
+                        $("#phone").val(data.phone);
+                        $("#id").val(data.id);
+                        console.log(data);
+
+                        $("#submit").hide();
+                        $("#update").show();
+                    }
+                });
+            });
+
+            //Get Data from ajax and show in table
+
+            function getData(){
+                $.ajax({
+                    url: "list.php",
+                    type: "POST",
+                    data: {action: "getData"},
+                    success: function(data){
+                        $("#result_table").html(data);
+                    }
+                });
+            }
+
+            getData(); //reload table data
+
+            //Insert Data
+            $('#submit').click(function(){
+                
+                var formdata = $('#dataform').serializeArray();
+
+                console.log(formdata);
+
+                $.ajax({
+                    url: 'insert.php',
+                    type: 'POST',
+                    data: formdata,
+                    success: function(data){
+                        console.log(data);
+                        getData();
+                        $('#dataform').each(function(){
+                            this.reset();
+                        });
+                        $("#id").val("");
+
+                        $("#result").html(data);
+                        
+                    }
+                });
+
+            });
+
+            //Update Data
+
+            $('#update').click(function(){
+                
+                var formdata = $('#dataform').serializeArray();
+
+                console.log(formdata);
+
+                $.ajax({
+                    url: 'edit.php',
+                    type: 'POST',
+                    data: formdata,
+                    success: function(data){
+                        console.log(data);
+                        getData();
+                        $('#dataform').each(function(){
+                            this.reset();
+                        });
+                        $("#id").val("");
+
+                        $("#submit").show();
+                        $("#update").hide();
+                    }
+                });
+
+            });
+        });
+    </script>
+
+</body>
+</html>
