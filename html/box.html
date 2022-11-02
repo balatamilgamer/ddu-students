@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bxslider/src/css/jquery.bxslider.css">
+</head>
+<body>
+
+    <div class="head">
+        <div class="logo">
+            <img src="https://caddcentre.com/assets/images/cadd_centre_logo.svg" alt="">
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="burger-menu-icon">
+            <div class="icons"></div>
+        </div>
+    </div>
+    
+    <div class="slider">
+        <div>
+            <img src="https://digitalmarketing.caddcentre.com/v3/upload/banner/1666360850firstJobBanner.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://digitalmarketing.caddcentre.com/v3/upload/banner/1666360850firstJobBanner.jpg" alt="">
+        </div>
+      </div>
+
+
+    
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #CDCDCD;
+            position: relative;
+        }
+        .logo img{
+            width: 100px;
+        }
+        .menu ul{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li{
+            list-style: none;
+        }
+        .menu ul li a{
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+        .row{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .col{
+            width: calc(25% - 30px);
+            height: 100px;
+            margin: 15px;
+            background-color: red;
+            transition: all ease 1s;
+        }
+        .col:hover{
+            background-color: green;
+            
+        }
+        .burger-menu-icon{
+            position: absolute;
+            top: 30px;
+            right: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .burger-menu-icon .icons{
+            width: 40px;
+            height: 3px;
+            background-color: #000;
+            position: relative;
+        }
+
+        .burger-menu-icon .icons::before{
+            content: "";
+            width: 40px;
+            height: 3px;
+            background-color: #000;
+            position: absolute;
+            top: -10px;
+        }
+
+        .burger-menu-icon .icons::after{
+            content: "";
+            width: 40px;
+            height: 3px;
+            background-color: #000;
+            position: absolute;
+            top: 10px;
+        }
+
+        @media screen and (max-width: 765px){
+            .col{
+                width: calc(100% - 30px);
+            }
+            .head{
+                flex-direction: column;
+            }
+            .menu ul{
+                flex-direction: column;
+            }
+
+            .burger-menu-icon{
+                display: block;
+            }
+
+            .menu{
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 950px){
+            .col{
+                width: calc(50% - 30px) !important;
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="bxslider/src/js/jquery.bxslider.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('.burger-menu-icon').click(function(){
+
+                $('.menu').slideToggle();
+
+            });
+
+            $('.slider').bxSlider({
+                auto: true,
+                autoControls: true,
+                stopAutoOnClick: true,
+                pager: true,
+                mode: 'vertical',
+                touchEnabled: true,
+                pause: 1000,
+            });
+
+        });
+
+
+    </script>
+
+</body>
+</html>

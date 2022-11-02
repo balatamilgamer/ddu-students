@@ -2,7 +2,7 @@
 include 'db.php';
 
 print_r($_POST);
-
+exit;
 if(isset($_POST['name'])){
     extract($_POST);
 

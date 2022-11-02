@@ -38,7 +38,6 @@
     <script>
         $(document).ready(function(){
 
-
             // delete data from database
             $("#result_table").on('click', '.delete', function(){
                 var rowid = $(this).attr('data-id');
@@ -46,7 +45,7 @@
                 $.ajax({
                     url: 'delete.php',
                     type: 'POST',
-                    data: {id: rowid},
+                    data: {id: rowid, table: 'users'},
                     success: function(data){
                         //getData();
                         if(data==1){
@@ -80,7 +79,6 @@
             });
 
             //Get Data from ajax and show in table
-
             function getData(){
                 $.ajax({
                     url: "list.php",

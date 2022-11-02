@@ -4,6 +4,12 @@ include 'db.php';
 //print_r($_POST);
 
 if(isset($_POST['name'])){
+
+    if($_POST['name']==""){
+        $msg = "Name is required";
+        exit;
+    }
+
     extract($_POST);
 
     $sql = "INSERT INTO `users`(`name`, `email`, `phone`) VALUES ('$name','$email','$phone')";
