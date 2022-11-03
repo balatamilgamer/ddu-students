@@ -1,0 +1,25 @@
+.black_wrapper{
+    background: rgba(0, 0, 0, 0);
+    color: #FFF;
+    position: relative;
+    z-index: 2;
+}
+
+.white_wrapper{
+    background: #FFF;
+    color: #000;
+    position: relative;
+    z-index: 2;
+}
+
+.slide{
+    position: relative;
+    top: -150px;
+}
+
+
+@media screen and (max-width: 450px) {
+    .phone{
+       text-align: center;
+    }
+}
