@@ -18,7 +18,7 @@ $data = get_data("products", "*", null, "id ASC", "$start, $limit");
 $total_count =  get_count("products", "*", null);
 ?>
 
-    <h1>Total Records: <?php echo $total_count; ?></h1>
+<h1>Total Records: <?php echo $total_count; ?></h1>
 
 <table class="table">
     <tr>
