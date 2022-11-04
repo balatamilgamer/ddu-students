@@ -26,7 +26,6 @@ $total_count =  get_count("products", "*", null);
         <td>Name</td>
         <td>Price</td>
     </tr>
-
     <?php
     foreach($data as $row){
         echo "<tr>
