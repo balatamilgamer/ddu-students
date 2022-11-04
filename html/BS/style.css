@@ -14,7 +14,22 @@
 
 .slide{
     position: relative;
-    top: -150px;
+    margin-top: -150px;
+}
+
+.img-wrapper{
+    background: url('https://balatamilgamer.in/demo/images/banner.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.card{
+    position: relative;
+}
+
+.cards-img-btn{
+    position: absolute;
 }
 
 
