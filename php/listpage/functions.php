@@ -2,15 +2,17 @@
 
 $db = new mysqli("localhost", "root", "", "dummy_db");
 
+$limit = 1;
+
 if(isset($_GET['page'])){
     $page = $_GET['page'];
-    $start = ($page-1)*10;
+    $start = ($page-1)*$limit;
 } else {
     $page = 1;
     $start = 0;
 }
 
-$limit = 10;
+
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]";
 
 function get_count($table, $fields, $where = null){
@@ -50,13 +52,13 @@ function pagenation($total,$page,$limit,$url,$where=null){
 
     $print_data = "<ul class='pagination'>";
     if($page > 1){
-        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=1'>First</a></li>";
-        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".($page-1)."'>Previous</a></li>";
+        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=1".$where."'>First</a></li>";
+        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".($page-1).$where."'>Previous</a></li>";
     }
     
     if($total_page!=$page){
-        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".($page+1)."'>Next</a></li>";
-        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".$total_page."'>Last</a></li>";
+        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".($page+1).$where."'>Next</a></li>";
+        $print_data .= "<li class='page-item'><a class='page-link' href='".$url."?page=".$total_page.$where."'>Last</a></li>";
     }
 
 

@@ -13,12 +13,28 @@
 
 <?php 
 include "functions.php";
+$where = '';
+if(isset($_GET['name']) && $_GET['name']!=''){
+  $where = "name like '%".$_GET['name']."%'";
+  $url_Data = "&name=".$_GET['name'];
+}
 
-$data = get_data("products", "*", null, "id ASC", "$start, $limit");
-$total_count =  get_count("products", "*", null);
+$data = get_data("products", "*", $where, "id ASC", "$start, $limit");
+$total_count =  get_count("products", "*", $where);
 ?>
 
 <h1>Total Records: <?php echo $total_count; ?></h1>
+
+<form action="" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" name="name" class="form-control" placeholder="Search">
+        </div>
+        <div class="col-md-3">
+            <input type="submit" name="submit" class="btn btn-primary" value="Search">
+        </div>
+    </div>
+</form>
 
 <table class="table">
     <tr>
@@ -38,7 +54,7 @@ $total_count =  get_count("products", "*", null);
     
 </table> 
 
-<?php echo pagenation($total_count,$page,$limit,$url,""); ?>
+<?php echo pagenation($total_count,$page,$limit,$url,$url_Data); ?>
 
 <!-- <nav aria-label="Page navigation example">
   <ul class="pagination">
