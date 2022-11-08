@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="" onsubmit="return val()">
+        <input type="text" name="name" id="name" placeholder="Enter your name"><br>
+        <input type="text" name="email" id="email" placeholder="Enter your email"><br>
+        <input type="text" name="phone" id="phone" placeholder="Enter your phone"><br>
+        <input type="text" name="password" id="password" placeholder="Enter your password"><br>
+        <input type="text" name="cpassword" id="cpassword" placeholder="Enter your confirm password"><br>
+        <input type="submit" value="Submit"><br>
+    </form>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <script>
+        function val(){
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var password = document.getElementById('password').value;
+            var cpassword = document.getElementById('cpassword').value;
+
+            if(name == ""){
+                alert("Please enter your name");
+                return false;
+            }
+            else{
+                var nameReg = /^[a-zA-Z ]{2,30}$/;
+                if(!nameReg.test(name)){
+                    alert("Please enter valid name");
+                    return false;
+                }
+            }
+
+            if(email == ""){
+                alert("Please enter your email");
+                return false;
+            }
+            else{
+                var emailReg = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,20})(.[a-z]{2,8})?$/;
+                if(!emailReg.test(email)){
+                    alert("Please enter valid email");
+                    return false;
+                }
+            }
+
+            if(password == ""){
+                alert("Please enter your password");
+                return false;
+            }
+            else{
+                //var passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+                var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+                if(!regularExpression.test(password)){
+                    alert("Please enter valid password");
+                    return false;
+                } else{
+
+                    if(cpassword == ""){
+                        alert("Please enter your confirm password");
+                        return false;
+                    }
+                    else{
+                        if(password != cpassword){
+                            alert("Password and confirm password not match");
+                            return false;
+                        }
+                    }
+
+                }
+            }
+
+            if(phone == ""){
+                alert("Please enter your phone");
+                return false;
+            }
+            else{
+                var phoneReg = /^[0-9]{10}$/;
+                if(!phoneReg.test(phone)){
+                    alert("Please enter valid phone");
+                    return false;
+                }
+            }
+        }
+
+
+        function fun_name(){
+            var msg = document.getElementById('msg').value;
+            alert(msg);
+        }
+
+
+    </script>
+
+    <input type="text" id="msg" placeholder="name">
+
+    <button onclick="fun_name()">bala</button>
+
+</body>
+</html>
