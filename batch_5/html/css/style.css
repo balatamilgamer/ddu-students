@@ -1,0 +1,28 @@
+.form-box{
+    width: 500px;
+    margin: auto;
+    border: 1px solid red;
+    padding: 20px;
+}
+
+.form-row{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.form-row label{
+    width: 30%;
+    padding: 20px;
+}
+
+.text-box{
+    padding: 20px;
+    width: 70%;
+}
+
+.button{
+    width: 100%;
+    padding: 20px;
+    background: blue;
+    color: #FFF;
+}
