@@ -60,3 +60,14 @@ function bill(ounit,cunit){
 var output = bill(100, 300);
 
 console.log(output.b_gtotal);
+
+
+
+// arrow function
+
+const carDetails = (name, model) => {
+    console.log(name, model);
+}
+
+carDetails("BMW", "X5");
+
