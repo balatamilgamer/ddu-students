@@ -64,7 +64,6 @@ console.log(output.b_gtotal);
 
 
 // arrow function
-
 const carDetails = (name, model) => {
     console.log(name, model);
 }
