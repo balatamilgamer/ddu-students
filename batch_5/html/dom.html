@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <h1 id="title">Hello World!</h1>
+    <input type="text" name="" id="name" onkeyup="titleChanger()">
+
+    <script>
+        var title = document.getElementById("title");
+        var titleChanger = ()=>{
+            var name = document.getElementById("name").value;
+            title.innerHTML = "Hello "+name+"!";
+            console.log(name);
+
+        }
+    </script>
+
+
+    <h1 id="des" onclick="output()">Welcome</h1>
+    <input type="text" id="result">
+
+    <script>
+
+        var output = ()=>{
+            var des = document.getElementById("des");
+            document.getElementById("result").value = des.innerHTML;
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

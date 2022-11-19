@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="bill-box">
+        <h1>EB Bill</h1>
+        <input type="text" name="name" id="name" placeholder="name"><br>
+        <input type="text" name="address" id="address" placeholder="address"><br>
+        <input type="text" name="units" id="units" placeholder="units"><br>
+        <button onclick="print_bill()" >Submit</button>
+    </div>
+
+    <section class="main-pd-wrapper" id="bill_output" style="width: 450px; margin: auto; display: none;">
+        <div style="
+                    text-align: center;
+                    margin: auto;
+                    line-height: 1.5;
+                    font-size: 14px;
+                    color: #4a4a4a;
+                  ">
+                  
+                  <h1>EB Bill</h1>
+    
+                  <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
+    
+                  <h2 id="cname">Balakumar</h2>
+    
+                  <p id="caddress" style="margin: 15px auto;">
+                    A2, Test Street <br>
+                    Test Area Bangaluru 560001, Karnataka
+                  </p>
+    
+    
+    
+                  
+                  <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
+                </div>
+                <table style="width: 100%; table-layout: fixed">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px; padding-left: 0;">Sn.</th>
+                      <th style="width: 220px;">Units</th>
+                      <th>Price</th>
+                      <th style="text-align: right; padding-right: 0;">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="invoice-items">
+                      <td>01</td>
+                      <td id="cunit">Tropicana Purenectar Pomegr</td>
+                      <td id="cprice">5 PC</td>
+                      <td id="ctotal" style="text-align: right;">₹ 100</td>
+                    </tr>
+                  </tbody>
+                </table>
+    
+    
+                <table style="width: 100%;
+                margin-top: 15px;
+                border: 1px dashed #00cd00;
+                border-radius: 3px;">
+                  <thead>
+                    <tr>
+                      <td>GST 18%: </td>
+                      <td id="csgt" style="text-align: right;">₹ 396</td>
+                    </tr>
+                    <tr>
+                      <td>Grand Total: </td>
+                      <td id="cgrand_total" style="text-align: right;">32%</td>
+                    </tr>
+                  </thead>
+               
+                </table>
+    
+      </section>
+
+    <script>
+
+        var print_bill = () =>{
+
+            //get data
+            var name = document.getElementById("name").value;
+            var address = document.getElementById("address").value;
+            var unit = document.getElementById("units").value;
+
+            var result = bill(unit);
+
+            console.log(result);
+
+            //set data
+            document.getElementById("cname").innerHTML = name;
+            document.getElementById("caddress").innerHTML = address;
+            document.getElementById("cunit").innerHTML = unit;
+            document.getElementById("cprice").innerHTML = result.b_price;
+            document.getElementById("ctotal").innerHTML = result.b_total;
+            document.getElementById("csgt").innerHTML = result.b_gst;
+            document.getElementById("cgrand_total").innerHTML = result.b_gtotal;
+
+
+            //css style
+            document.getElementById("bill-box").style.display = "none";
+            document.getElementById("bill_output").style.display = "block";
+
+        }
+
+        function bill(unit){
+
+            unit = parseInt(unit);
+
+            var price = 0;
+            var total = 0;
+            var gst = 0;
+            var gtotal = 0;
+
+            if(unit <= 100){
+                price = 0;
+            } else {
+
+                unit = unit - 100;
+                
+                if(unit <= 200){
+                    price = 2;
+                } else if (unit > 200){
+                    price = 3;
+                } else {
+                    price = 5;
+                }
+
+            }
+
+            total = parseInt(price * unit);
+            
+            gst = total * 0.18;
+
+            gtotal = total + gst;
+
+            var result = {
+                b_unit: unit,  //name: value
+                b_price: price,
+                b_total: total,
+                b_gst: gst.toFixed(2),
+                b_gtotal: gtotal.toFixed(2)
+            };
+
+            return result;
+
+        }
+
+    </script>
+
+
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        #bill-box{
+            margin: auto;
+            max-width: 550px;
+            padding: 20px;
+        }
+
+        #bill-box input{
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #bill-box button{
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #00cd00;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    
+        .table-bordered td,
+        .table-bordered th {
+          border: 1px solid #ddd;
+          padding: 10px;
+          word-break: break-all;
+        }
+    
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          margin: 0;
+          padding: 0;
+          font-size: 16px;
+        }
+        .h4-14 h4 {
+          font-size: 12px;
+          margin-top: 0;
+          margin-bottom: 5px;
+        }
+        .img {
+          margin-left: "auto";
+          margin-top: "auto";
+          height: 30px;
+        }
+        pre,
+        p {
+          /* width: 99%; */
+          /* overflow: auto; */
+          /* bpicklist: 1px solid #aaa; */
+          padding: 0;
+          margin: 0;
+        }
+        table {
+          font-family: arial, sans-serif;
+          width: 100%;
+          border-collapse: collapse;
+          padding: 1px;
+        }
+        .hm-p p {
+          text-align: left;
+          padding: 1px;
+          padding: 5px 4px;
+        }
+        td,
+        th {
+          text-align: left;
+          padding: 8px 6px;
+        }
+        .table-b td,
+        .table-b th {
+          border: 1px solid #ddd;
+        }
+        th {
+          /* background-color: #ddd; */
+        }
+        .hm-p td,
+        .hm-p th {
+          padding: 3px 0px;
+        }
+        .cropped {
+          float: right;
+          margin-bottom: 20px;
+          height: 100px; /* height of container */
+          overflow: hidden;
+        }
+        .cropped img {
+          width: 400px;
+          margin: 8px 0px 0px 80px;
+        }
+        .main-pd-wrapper {
+          box-shadow: 0 0 10px #ddd;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 15px;
+        }
+        .table-bordered td,
+        .table-bordered th {
+          border: 1px solid #ddd;
+          padding: 10px;
+          font-size: 14px;
+        }
+        .invoice-items {
+          font-size: 14px;
+          border-top: 1px dashed #ddd;
+        }
+        .invoice-items td{
+          padding: 14px 0;
+         
+        }
+      </style>
+</body>
+</html>
