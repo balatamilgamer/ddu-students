@@ -14,3 +14,8 @@ for(var i = count; i > 0 ; i--) {
     var index = i - 1;
     console.log(cars[index]);
 }
+
+
+for(var j = 0; j < 10; j+=2) {
+    console.log(j);
+}

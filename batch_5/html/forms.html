@@ -1,0 +1,42 @@
+
+<form action="" method="post" onsubmit="return FormVal()">
+    <input type="text" id="name">
+    <input type="text" id="email">
+    <input type="text" id="phone">
+    <input type="submit" value="Submit">
+</form>
+
+
+<script>
+
+    function FormVal(){
+
+        
+        var name = document.getElementById('name');
+        var email = document.getElementById('email');
+        var phone = document.getElementById('phone');
+
+        if(name.value == "" || name.value.length < 3){
+            alert("Please enter your name");
+            name.focus();
+            return false;
+        }
+
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if(email.value == "" || !emailReg.test(email.value)){
+            alert("Please enter your email");
+            email.focus();
+            return false;
+        }
+
+        if(phone.value == "" || phone.value.length < 10){
+            alert("Please enter your phone");
+            phone.focus();
+            return false;
+        }
+
+    }
+
+
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <input type="text" id="c_clock">
+        <button onclick="startTimer()">Start</button>
+    </div>
+
+    <h1 id="clock"></h1>
+
+    <script>
+
+        var count;
+        var clock = document.getElementById("clock");
+        var timer;
+
+        function countDown(){
+            clock.innerHTML = count;
+            count--;
+
+            if(count <= 0){
+                clock.innerHTML = "Happy New Year!";
+                clearInterval(timer);
+            }
+
+            console.log(count);
+        }
+
+        function startTimer(){
+            count = document.getElementById("c_clock").value;
+            timer = setInterval(countDown, 1000);
+        }
+
+        
+
+    </script>
+    
+</body>
+</html>

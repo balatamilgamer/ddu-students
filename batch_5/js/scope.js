@@ -8,3 +8,6 @@ function printName(name) {
 
 printName(fullname);
 
+
+
+console.log(`hi welcome ${fullname}`); // 
