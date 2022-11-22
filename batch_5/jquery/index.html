@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <h1 class="tab" id="tab1" data-tab="#tabp1" onclick="tabs('tabp1')">What is Lorem Ipsum?</h1>
+    <p class="tab-pg" id="tabp1">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+    <h1 class="tab" id="tab2" data-tab="#tabp2" onclick="tabs('tabp2')">Why do we use it?</h1>
+    <p class="tab-pg" id="tabp2" style="display: none;">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+
+    <h1 class="tab" id="tab3" data-tab="#tabp3" onclick="tabs('tabp3')">Where does it come from?</h1>
+    <p class="tab-pg" id="tabp3" style="display: none;">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+
+
+    
+    <!-- <script src="core_jquery.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script>
+
+        function tabs(tabid){
+            // var tab = document.getElementsByClassName("tab-pg");
+
+            // for(var i=0; i<tab.length; i++){
+            //     tab[i].style.display = "none";
+            // }
+
+            // document.getElementById(tabid).style.display = "block";
+
+        }
+
+        $(document).ready(function(){
+            
+            $(".tab").click(function(){
+                var tabid = $(this).attr("data-tab");
+                $(".tab-pg").slideUp(2000);
+                $(tabid).slideDown(2000);
+            });
+
+        });
+
+    </script>
+
+
+</body>
+</html>
