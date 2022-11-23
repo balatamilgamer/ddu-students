@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        .sliders{
+            position: relative;
+        }
+
+        .slider{
+            position: absolute;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+
+        .slider.active{
+            display: block;
+        }
+    </style>
+
+    <div class="sliders">
+        <div class="slider active">
+            <img src="https://img.freepik.com/free-photo/smiling-happy-indian-student-with-backpack-pointing-his-finger-wall_496169-1532.jpg?w=996&t=st=1669179207~exp=1669179807~hmac=ac08b63440451f0885d2410038fd8b50ebd843f502749c0707a441cf1651ec53" alt="">
+        </div>
+        <div class="slider">
+            <img src="https://img.freepik.com/free-photo/smiling-indian-man-casual-close-with-laptop-backpack-pastel-wall_496169-1583.jpg?w=996&t=st=1669179254~exp=1669179854~hmac=1ef668a34b6da9d0aa2460271ca164e45c168da026fff3036a88972ff16d6610" alt="">
+        </div>
+        <div class="slider">
+            <img src="https://img.freepik.com/free-photo/cheerful-attractive-young-woman-with-black-hair-walking_1262-19104.jpg?w=996&t=st=1669179272~exp=1669179872~hmac=332ef57bf891ff8e21ef384188bfbf643c0dd235740f17f64df761401b2070a1" alt="">
+        </div>
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            var sliders = $(".sliders");
+            var slider = $(".slider");
+            var sliderCount = slider.length;
+            var current = 0;
+
+            setInterval(function(){
+                slider.eq(current).removeClass("active");
+                current = (current + 1) % sliderCount;
+                slider.eq(current).addClass("active");
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

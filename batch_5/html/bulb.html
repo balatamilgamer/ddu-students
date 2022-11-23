@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        img{
+            display: block;
+            margin: 150px auto 0 auto;
+            width: 300px;
+            filter: grayscale(0);
+        }
+        img.off{
+            filter: grayscale(100%);
+        }
+        button{
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+
+    <img src="https://i.pinimg.com/736x/fc/1e/66/fc1e66634881b5bb50e846ffe175cc70.jpg" id="bulb" class="off" alt="">
+
+    <button id="btn">ON/OFF</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                console.log("clicked");
+                $("#bulb").toggleClass("off");
+            });
+        });
+
+        
+    </script>
+
+    
+</body>
+</html>
