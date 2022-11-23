@@ -18,7 +18,8 @@
         $(document).ready(function(){
             $("#loadData").click(function(){
                 $.ajax({
-                    url: "https://dummyjson.com/carts",
+                    //url: "https://dummyjson.com/carts",
+                    url: "carts.json",
                     success: function(result){
                         console.log(result);
 
@@ -30,16 +31,25 @@
 
                         var output;
 
-                        output = '<table><tr><th>Sno</th><th>Products</th></tr>';
+                        output = '<table><tr><th>Sno</th><th>Products</th><th>Price</th><th>Total</th></tr>';
 
                         for(var i=0; i<result.carts.length; i++){
+                            var total = 0;
+
                             output += '<tr><td>' + (i+1) + '</td><td>';
 
                                 for(var j=0; j<result.carts[i].products.length; j++){
                                     output += result.carts[i].products[j].title + '<br>';
                                 }
+                            
+                            output += '</td><td>';
 
-                            output +='</td></tr>';
+                                for(var j=0; j<result.carts[i].products.length; j++){
+                                    output += result.carts[i].products[j].price + '<br>';
+                                    total += result.carts[i].products[j].price;
+                                } 
+
+                            output +='</td><td>'+total+'</td></tr>';
                         }
 
                         output += '</table>';
