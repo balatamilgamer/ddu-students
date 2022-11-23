@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="result"></div>
+
+    <button id="loadData">Load</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#loadData").click(function(){
+                $.ajax({
+                    url: "https://dummyjson.com/carts",
+                    success: function(result){
+                        console.log(result);
+
+                        // console.log(result.carts[0].products[0].title);
+
+                        // //var data = JSON.parse(result);
+
+                        // $("#result").html(result.carts[0].products[0].title);
+
+                        var output;
+
+                        output = '<table><tr><th>Sno</th><th>Products</th></tr>';
+
+                        for(var i=0; i<result.carts.length; i++){
+                            output += '<tr><td>' + (i+1) + '</td><td>';
+
+                                for(var j=0; j<result.carts[i].products.length; j++){
+                                    output += result.carts[i].products[j].title + '<br>';
+                                }
+
+                            output +='</td></tr>';
+                        }
+
+                        output += '</table>';
+
+                        $("#result").html(output);
+
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
