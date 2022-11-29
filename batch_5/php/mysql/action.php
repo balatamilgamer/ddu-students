@@ -8,7 +8,6 @@
 
         //print_r($_POST);
 
-
         $en_password = md5($password);
         $dob = date("Y-m-d");
 
@@ -26,6 +25,27 @@
 
         
         header("Location: form.php?m=$msg");
+
+    }
+
+    if(isset($_POST['update'])){
+       
+        extract($_POST);
+
+        $id = base64_decode($id);
+
+        $sql = "UPDATE `users` SET `name`='$fname',`email`='$email',`phone`='$phone' WHERE id = $id";
+
+        if($db->query($sql)){
+
+            $msg = "New record updated successfully";
+
+        } else {
+            $msg = "Error: " . $sql . "<br>" . $db->error;
+        }
+
+        
+        header("Location: list.php?m=$msg");
 
     }
 
