@@ -1,11 +1,9 @@
 <?php
 
-$data = "TATA, BMW, TOYOTA, HONDA, AUDI, MERCEDES";
-
-$car = explode(", ", $data);
+$cars = array("Volvo","BMW","Toyota");
 
 echo '<ul>';
-foreach($car as $kadi){
+foreach($cars as $kadi){
     echo "<li>".$kadi."</li>";
 }
 echo '</ul>';
