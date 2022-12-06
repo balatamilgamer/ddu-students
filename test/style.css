@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+
+
+body{
+    background: #DEF4F1 url('assets/images/bg_new.jpg') no-repeat center bottom;
+    background-size: cover;
+    font-family: 'Jost', sans-serif;
+    min-height: 100vh;
+}
+
+.container{
+    max-width: 950px;
+}
+
+.logo{
+    max-width: 70%;
+    width: 250px;
+    display: block;
+}
+
+.title{
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    text-align: right;
+}
+
+.e3_card{
+    background: #FFF;
+    border-radius: 15px;
+    margin: 40px 0 40px 0;
+}
+
+.e3_card_sm{
+    max-width: 450px;
+    display: block;
+    margin: 80px auto 0 auto;
+}
+
+.card_title{
+    text-align: center;
+    
+}
+
+.e3_qus{
+    background: #f7f8fa;
+    padding: 50px;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+    font-size: 40px;
+}
+
+.nav_block{
+    padding: 30px 50px;
+    background: #f7f8fa;
+    border-radius:0 0 15px 15px;
+}
+
+.options{
+    margin: 20px 0;
+    font-size: 20px;
+    border: 1px solid #CDCDCD;
+    padding: 15px 25px;
+    display: block;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.nav_block .btn{
+    font-size: 20px;
+    border-radius: 80px;
+    padding: 15px 20px;
+}
+
+.options_block{
+    padding: 30px 50px;
+}
+
+.ans_box{
+    margin: 50px 0;
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    border:0;
+    border-bottom: 1px solid #CDCDCD;
+    padding-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.ans_box::placeholder{
+    color: #CDCDCD;
+}
+
+.result_icon{
+    width: 150px;
+    max-width: 70%;
+}
+
+.form-control{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0 0 30px 0;
+    width: 100%;
+    border:0;
+    border-bottom: 1px solid #CDCDCD;
+    padding-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 0;
+}
+
+.ans_box:focus, .form-control:focus{
+    outline: none;
+    border-bottom: 1px solid #0d6efd;
+}
+
+.full-block{
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.full-block .logo{
+    margin: auto;
+}
+
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #39B49A;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .logo{
+        display: block;
+        max-width: 80%;
+        margin: auto;
+    }
+    .title{
+        font-size: 30px;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .ans_box{
+        font-size: 25px;
+    }
+}
+
