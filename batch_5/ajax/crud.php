@@ -20,10 +20,12 @@
     <div id="result"></div>
 
     <form action="" method="post" id="form">
+        <input type="hidden" name="id" id="id">
         <input type="text" name="name" id="name">
         <input type="text" name="email" id="email">
         <input type="password" name="password" id="password">
-        <input type="submit" name="submit" id="submit">
+        <input type="submit" name="submit" id="submit" value="insert">
+        <input type="submit" name="update" id="update" value="update" style="display:none;">
     </form>
 
     <table id="resultTable">
@@ -41,17 +43,20 @@
     <script>
         $(document).ready(function(){
 
-            const loadData = () =>{
+            //load table data function
+            const loadData = () => {
                 $.ajax({
                     url: 'load.php',
                     type: 'get',
                     success: function(result){
-                        $('#resultTable').append(result);
+                        $('#resultTable').html(result);
                     }
                 });
             }
 
-            const deleteData = (id) =>{
+
+            // delete function
+            const deleteData = (id) => {
 
                 $.ajax({
                     url: 'delete.php',
@@ -64,7 +69,7 @@
                         }
                     }
                 });
-                
+
             }
 
             $("body").on("click",".delete",function(e){
@@ -72,7 +77,7 @@
                 deleteData(id);
             });
                
-
+            //load data calling
             loadData();
 
             //insert action
@@ -94,7 +99,8 @@
 
                         if(result.status){
                             $('#result').html(result.msg).addClass('sus');
-                            $('#resultTable').append("<tr><td>"+result.id+"</td><td>"+result.data.name+"</td><td>"+result.data.email+"</td><td>"+result.password+"</td><td><a href=''>Edit</a> | <a href=''>Delete</a></td></tr>");
+                            $("#form").trigger("reset");
+                            $('#resultTable').append("<tr><td>"+result.id+"</td><td>"+result.data.name+"</td><td>"+result.data.email+"</td><td>"+result.password+"</td><td><button data-id='"+result.id+"' class='edit'>Edit</button> | <button data-id='"+result.id+"' class='delete'>Delete</button></td></tr>");
                         } else{
                             $('#result').html(result.msg).addClass('error');
                         }
@@ -103,6 +109,63 @@
                 });
 
             });
+
+
+            //edit data
+            $("body").on("click",".edit",function(e){
+                var id = $(this).data('id');
+                console.log(id);
+
+                $.ajax({
+                    url: 'editLoad.php',
+                    type: 'post',
+                    data: {id:id},
+                    success: function(result){
+                        result = JSON.parse(result);
+
+                        console.log(result);
+
+                        if(result.status){
+                            $('#name').val(result.data.name);
+                            $('#id').val(result.data.id);
+                            $('#email').val(result.data.email);
+                            $('#password').val(result.data.password);
+                            $('#submit').hide();
+                            $('#update').show();
+                        }
+                    }
+                });
+
+            });
+
+            //update data
+            $("#update").click(function(e){
+
+                e.preventDefault();
+
+                var formdata = $("#form").serializeArray();
+
+                $.ajax({
+                    url: 'update.php',
+                    type: 'post',
+                    data: formdata,
+                    success: function(result){
+                        result = JSON.parse(result);
+                        if(result.status){
+                            $('#result').html(result.msg).addClass('sus');
+                            $("#form").trigger("reset");
+                            $('#submit').show();
+                            $('#update').hide();
+                            loadData();
+                        } else{
+                            $('#result').html(result.msg).addClass('error');
+                        }
+                        
+                    }
+                });
+
+            });
+
         });
     </script>
     

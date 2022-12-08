@@ -1,3 +1,11 @@
+<tr>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Email</td>
+    <td>Password</td>
+    <td>Action</td>
+</tr>
+
 <?php 
 
 include '../php/mysql/db.php';
@@ -12,7 +20,7 @@ if($result->num_rows > 0){
         echo "<td>".$row['name']."</td>";
         echo "<td>".$row['email']."</td>";
         echo "<td>".$row['password']."</td>";
-        echo "<td><a href=''>Edit</a> | <span data-id='".$row['id']."' class='delete'>Delete</span></td>";
+        echo "<td><button data-id='".$row['id']."' class='edit'>Edit</button> | <button data-id='".$row['id']."' class='delete'>Delete</button></td>";
         echo "</tr>";
     }
 }
