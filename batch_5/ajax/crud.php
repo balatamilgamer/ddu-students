@@ -64,6 +64,7 @@
                     data: {id:id},
                     success: function(result){
                         result = JSON.parse(result);
+                        console.log(result);
                         if(result.status){
                             $('#tr'+id).remove();
                         }
@@ -74,6 +75,7 @@
 
             $("body").on("click",".delete",function(e){
                 var id = $(this).data('id');
+                console.log(id);
                 deleteData(id);
             });
                
@@ -100,7 +102,7 @@
                         if(result.status){
                             $('#result').html(result.msg).addClass('sus');
                             $("#form").trigger("reset");
-                            $('#resultTable').append("<tr><td>"+result.id+"</td><td>"+result.data.name+"</td><td>"+result.data.email+"</td><td>"+result.password+"</td><td><button data-id='"+result.id+"' class='edit'>Edit</button> | <button data-id='"+result.id+"' class='delete'>Delete</button></td></tr>");
+                            $('#resultTable').append("<tr id='tr"+result.id+"'><td>"+result.id+"</td><td>"+result.data.name+"</td><td>"+result.data.email+"</td><td>"+result.password+"</td><td><button data-id='"+result.id+"' class='edit'>Edit</button> | <button data-id='"+result.id+"' class='delete'>Delete</button></td></tr>");
                         } else{
                             $('#result').html(result.msg).addClass('error');
                         }
